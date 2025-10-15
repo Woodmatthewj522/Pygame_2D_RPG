@@ -61,7 +61,7 @@ Although some parts need polishing, the game is **fully playable and stable**.
 ├── Tiles/                     # Tile images/sheets and related map assets
 │
 ├── .gitattributes             # Git text and diff settings  
-├── .gitignore                 # ignored future assets that aren't used
+├── .gitignore                 # Files and folders git ignores
 └── README.md                  # Project documentation  
 
 ```
