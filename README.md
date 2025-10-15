@@ -48,8 +48,6 @@ Although some parts need polishing, the game is **fully playable and stable**.
 ## 📁 Folder Structure
 
 ```plaintext
-Pygame_RPG/
-│
 ├── Audio/               # Music and sound effects
 │   ├── main.mp3
 │   ├── forest.mp3
