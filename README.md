@@ -62,7 +62,6 @@ Although some parts need polishing, the game is **fully playable and stable**.
 │
 ├── .gitattributes             # Git text and diff settings  
 ├── .gitignore                 # Files and folders ignored by Git
-├── Pygame_RPG1_10.25.sln      # NEEDS REMOVED (not in use, not the project)
 └── README.md                  # Project documentation  
 
 ```
