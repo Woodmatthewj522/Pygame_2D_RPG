@@ -1,217 +1,168 @@
-# 2D MINI RPG - Adventure Game
+# 🗡️ Pygame RPG  
+*A handcrafted 2D RPG built in Python & Pygame (09/25 – 10/25)*  
 
-A 2D top-down action RPG built with Python and Pygame featuring combat, crafting, quests, and dungeon exploration.
-
-## Overview
-
-Embark on an epic adventure through a dangerous world filled with enemies, resources to gather, and mysteries to uncover. Battle monsters, craft powerful equipment, complete quests for NPCs, and face off against mighty bosses in challenging dungeons.
-
-## Features
-
-### Core Gameplay
-- **Top-Down Movement**: WASD controls with smooth camera following
-- **Combat System**: Real-time action combat with weapons and attack animations
-- **Leveling & Progression**: Gain experience, level up, and grow stronger
-- **Health Regeneration**: Out-of-combat health recovery system
-- **Equipment System**: Equip weapons, armor, helmets, boots, and accessories
-- **Inventory Management**: 4x4 grid with drag-and-drop functionality
-
-### Crafting & Resources
-- **Smithing**: Craft weapons (Axe, Pickaxe, Sword) and armor pieces
-- **Alchemy**: Brew healing potions and speed-enhancing elixirs
-- **Resource Gathering**: Chop trees, mine stones/ore, pick flowers and carrots
-- **Dynamic World**: Resources respawn over time
-
-### World & Exploration
-- **Multiple Zones**: 
-  - Overworld with forests, paths, and villages
-  - Dangerous dungeons with enemy spawns
-  - Mystical Zone 2 with unique resources
-  - Boss rooms for epic encounters
-- **Interactive NPCs**: Quest givers and merchants
-- **Houses**: Enter buildings for shelter
-- **Portals**: Travel between different areas
-
-### Quests & NPCs
-- **Soldier Marcus**: Supply quest for healing potions, unlocks trading post
-- **Miner Gareth**: Ore gathering quest with coin rewards
-- **Dynamic Dialog**: Quest tracking with progress indicators
-- **Vendor System**: Buy and sell items after completing quests
-
-### Combat & Enemies
-- **Enemy Types**: Orcs, goblins, and other creatures
-- **Enemy AI**: Patrol, chase, and attack behaviors
-- **Boss Battles**: Challenging multi-phase boss encounters
-- **Loot Drops**: Enemies drop coins, resources, and items
-- **Combat Stats**: Damage and defense calculations with equipment bonuses
-
-### UI & Systems
-- **Pause Menu**: Save, quit, or return to main menu
-- **HUD Icons**: Quick access to inventory, crafting, equipment, and quests
-- **Save/Load System**: Multiple save slots (4 available)
-- **Music & Sound**: Dynamic music for different areas, sound effects for actions
-- **Floating Damage Text**: Visual feedback for damage and healing
-- **Tooltips**: Hover information for interactive objects
-
-## Requirements
-
-- Python 3.x
-- Pygame library
-
-## Installation
-
-- Current Installation and gameplay is a bit tricky, future updates on repository and containerize to fix this
-## Controls
-
-### Movement
-- `W` / `↑` - Move up
-- `A` / `←` - Move left
-- `S` / `↓` - Move down  
-- `D` / `→` - Move right
-
-### Actions
-- `E` - Interact (talk to NPCs, gather resources, enter buildings)
-- `SPACE` or `1` - Attack (when weapon equipped)
-- `H` - Use health potion
-
-### UI Controls
-- `B` - Toggle Inventory
-- `C` - Toggle Crafting menu
-- `R` - Toggle Equipment screen
-- `I` - Toggle Quest log
-- `ESC` - Pause menu / Close dialogs
-
-### Mouse Controls
-- Left Click - Select items, craft, interact with UI
-- Right Click - Quick equip/use items in inventory
-- Drag & Drop - Move items between inventory slots
-
-## Game Mechanics
-
-### Combat
-- Equip weapons to deal damage
-- Different weapons have different damage values
-- Armor provides defense, reducing incoming damage
-- Attack cooldown prevents spam
-- Invulnerability frames after taking damage
-
-### Crafting Recipes
-
-#### Smithing
-- **Axe**: 5 Logs
-- **Pickaxe**: 2 Logs (for mining)
-- **Sword**: 2 Ore
-- **Helmet**: 8 Stone (+5 Defense)
-- **Chest Armor**: 15 Stone (+10 Defense)
-- **Boots**: 6 Stone (+5 Defense)
-
-#### Alchemy
-- **Health Potion**: 3 Flowers (heals 25 HP)
-- **Speed Potion**: 5 Flowers (temporary speed boost)
-
-### Resource Gathering
-- **Trees**: Requires Axe, drops Logs
-- **Stones**: Requires Pickaxe, drops Stone
-- **Ore Deposits**: Found in dungeons, drops Ore
-- **Flowers**: Hand-picked, used for potions
-- **Carrots**: Hand-picked, food item
-- **Crystals**: Found in Zone 2, rare resource
-
-### Leveling System
-- Gain experience by defeating enemies
-- Level up increases health, damage, and defense
-- Experience requirement increases with each level
-- Boss enemies grant bonus experience
-
-## Map Files
-
-The game loads maps from text files:
-- `forest.txt` - Main overworld
-- `dungeon1.txt` - First dungeon with enemies
-- `boss_room.txt` - Boss encounter area
-- `zone2.txt` - Mystical realm
-
-### Map Legend
-- `G` - Grass
-- `T` - Tree
-- `S` - Stone/Ore
-- `H` - House
-- `P` - Portal/Cave entrance
-- `N` - NPC (Soldier Marcus)
-- `M` - Miner NPC (Gareth)
-- `F` - Flower
-- `C` - Carrot
-- `W` - Water
-- `R` - Path
-- `@` - Player spawn point
-
-## Save System
-
-- 4 save slots available
-- Saves player stats, inventory, equipment, and quest progress
-- Auto-saves at checkpoints (feature in development)
-- Load game from main menu
-
-## Tips & Tricks
-
-1. **Early Game**: Focus on crafting an Axe first to gather logs efficiently
-2. **Combat**: Keep your distance from enemies until you have good armor
-3. **Quests**: Complete NPC quests early to unlock the trading post
-4. **Resource Management**: Don't sell everything - keep materials for crafting
-5. **Dungeon Prep**: Stock up on potions before entering dungeons
-6. **Boss Fights**: Learn attack patterns and dodge during invulnerability
-7. **Zone 2**: Requires good equipment due to tougher enemies
-
-## Current Known Issues
-
-- Cooking system is work-in-progress
-- Save/load system needs additional polish
-- Some placeholder graphics may be present
-- Boss AI needs further balancing
-
-## Future Enhancements
-
-- [ ] Expanded crafting recipes (cooking system)
-- [ ] More enemy varieties
-- [ ] Additional zones and dungeons
-- [ ] Magic/spell system
-- [ ] More quest lines
-- [ ] Achievement system
-- [ ] Improved boss mechanics
-- [ ] Controller support
-
-## Technical Details
-
-### Architecture
-- **Main Game Loop**: State-based system (main menu, playing, pause, etc.)
-- **Entity System**: Player, Enemy, Boss classes with inheritance
-- **Combat Engine**: Cooldown-based with damage/defense calculations
-- **Animation System**: Frame-based sprite animation
-- **Camera System**: Follows player with margins
-- **Collision Detection**: Rectangle-based collision
-
-### Performance
-- Targets 60 FPS
-- Efficient tile-based rendering
-- Sprite batching for better performance
-- Enemy spawning system with limits
-
-## Credits
-
-**Developer**: Matthew Wood  
-**Contact**: Woodmatthewj522@aol.com
-
-### Assets
-- Character sprites: Custom/Modified
-- Music: Various sources
-- Sound effects: Custom/Free resources
-
-## License
-
-This project is open source for educational purposes.
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
+![Pygame](https://img.shields.io/badge/Pygame-2.x-green?logo=pygame&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Playable-orange)
 
 ---
 
-**Note**: This is an ongoing project and may receive updates. Check the repository for the latest version!
+## 🎮 Overview
+A feature-rich single-player RPG developed entirely in **Pygame**, featuring exploration, combat, crafting, and interactive environments.  
+Every system — from NPC dialogue to resource gathering — was coded manually over one month.
 
-🎮 *Enjoy the adventure and good luck, brave hero!*
+Free assets were sourced from **itch.io**, and audio was edited using **Audacity**.  
+Although some parts need polishing, the game is **fully playable and stable**.
+
+---
+
+## 🧭 Features
+
+### 🌍 Exploration
+- Multiple zones: **World**, **Dungeon**, **Boss Room**, and **Zone 2**
+- Camera follow & tile-based world maps  
+- Environmental interaction (trees, ores, crystals, flowers)
+
+### ⚔️ Combat
+- Directional attacks with cooldowns  
+- Floating text feedback (damage, XP, healing)  
+- Enemies with aggro range, AI, and loot tables  
+- Boss battles with multiple phases  
+
+### 🧪 Crafting & Equipment
+- Smithing and alchemy systems  
+- Full drag-and-drop inventory  
+- Equipment slots that affect stats dynamically  
+
+### 🗣️ NPCs & Quests
+- Dialogue windows and quest tracking  
+- Miner and merchant NPCs  
+- Quest objectives saved between sessions  
+
+### 🎵 Audio
+- Contextual background music per zone  
+- Sound effects for chopping, mining, and combat  
+
+---
+
+## 📁 Folder Structure
+
+```plaintext
+Pygame_RPG/
+│
+├── Audio/               # Music and sound effects
+│   ├── main.mp3
+│   ├── forest.mp3
+│   ├── dungeon_theme.mp3
+│   └── walk.mp3
+│
+├── Maps/                # Text-based level layouts
+│   ├── world.txt
+│   ├── dungeon1.txt
+│   ├── zone2.txt
+│   └── boss_room.txt
+│
+├── NPC/                 # Player & enemy sprites
+│   ├── Player.PNG
+│   ├── boss1.png
+│   └── ...
+│
+├── JSON/                # Saved game data and configs
+│   ├── save_slot_1.json
+│   ├── save_slot_2.json
+│   └── ...
+│
+├── Assets/              # Optional visual/UI assets
+│
+├── Pygame_RPG1_10.25.py # Main game script
+└── README.md            # This file
+```
+# ⚙️ Setup & Requirements
+🐍 Python
+
+Version 3.10+ recommended
+
+# 📦 Dependencies
+
+- Install via pip:
+
+pip install pygame
+
+# ▶️ Running the Game
+
+Run the main Python file:
+
+python Pygame_RPG1_10.25.py
+
+
+Once launched, the main menu will appear.
+Use the arrow keys or mouse to navigate and start a new game.
+
+# 💾 Saving & Loading
+
+The game auto-creates up to 4 save slots, located in the JSON/ folder.
+
+You can manually save using the pause menu (ESC → Save Game).
+
+Saves include player stats, position, inventory, and quest progress.
+
+# 🧱 Key Systems
+System	Description
+Player	Tracks stats, level-ups, combat, and regeneration
+Enemy / Boss	Handles AI, aggression, and loot
+ActionBar	Quick-use slots for potions or tools
+Item	Generic class for any collectible or equippable item
+FloatingText	Displays visual damage/healing indicators
+EnemySpawnPoint	Manages respawn timers for dungeon mobs
+LootDrop	Handles visual item drops with animation
+load_text_map()	Loads ASCII-style text maps for each level
+save_game_data()	Saves game state to JSON
+play_music()	Handles music transitions per area
+#
+# 🎨 Gameplay Tips
+
+ESC → Pause, Save, or Exit
+
+Right-click potions on the Action Bar to heal
+
+Equip a Pickaxe to mine ores and crystals
+
+Explore portals to unlock Zone 2 and Boss Rooms
+
+Enemies respawn over time — grind for XP and loot
+
+# 🔊 Credits
+Category	Credit
+Art & Tiles	Free/modified assets from itch.io
+
+Audio	Edited and remixed in Audacity
+Programming	Designed & coded by MW
+Engine	Built entirely on Pygame
+#
+# 🚧 Known Issues / Future Plans
+🔧 Known Issues
+
+- Rare wall collision overlaps in tight areas
+
+- Some placeholder code (e.g., unused constants)
+
+- Occasional audio desync when looping music
+
+# 💡 Planned Features
+
+Improved dialogue system with branching options
+
+More detailed inventory UI
+
+Skill tree and ability cooldowns
+
+Weather/day-night system
+
+# 🏁 Development Notes
+
+This RPG was created as a personal learning project to explore game design patterns, state management, and object-oriented architecture in Pygame.
+All systems — from combat to saving — were designed modularly for future expansion.
+
+# 🐉 License
+
+This project is open for learning, and I will add changes as I go!
