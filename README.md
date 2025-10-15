@@ -1,5 +1,5 @@
 # 🗡️ Pygame RPG  
-*A handcrafted 2D RPG built in Python & Pygame (09/25 – 10/25)*  
+*A handcrafted 2D RPG built in Python & Pygame (09/25 – Currently in development)*  
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
 ![Pygame](https://img.shields.io/badge/Pygame-2.x-green?logo=pygame&logoColor=white)
