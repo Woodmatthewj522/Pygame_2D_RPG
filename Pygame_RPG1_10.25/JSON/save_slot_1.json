@@ -1,0 +1,89 @@
+{
+  "player": {
+    "level": 1,
+    "health": 100,
+    "max_health": 100,
+    "damage": 15,
+    "experience": 60,
+    "experience_to_next": 100,
+    "position": {
+      "x": 380,
+      "y": 280
+    }
+  },
+  "world": {
+    "current_level": "world",
+    "map_offset_x": 525,
+    "map_offset_y": 345
+  },
+  "inventory": [
+    [
+      {
+        "name": "Coin",
+        "count": 2,
+        "category": null,
+        "damage": 0
+      },
+      {
+        "name": "Log",
+        "count": 1,
+        "category": null,
+        "damage": 0
+      },
+      {
+        "name": "Ore",
+        "count": 4,
+        "category": null,
+        "damage": 0
+      },
+      {
+        "name": "Potion",
+        "count": 1,
+        "category": null,
+        "damage": 0
+      }
+    ],
+    [
+      {
+        "name": "Flower",
+        "count": 7,
+        "category": null,
+        "damage": 0
+      },
+      {
+        "name": "Axe",
+        "count": 1,
+        "category": "Weapon",
+        "damage": 20
+      },
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null
+    ]
+  ],
+  "equipment": {
+    "weapon": {
+      "name": "Pickaxe",
+      "category": "Weapon",
+      "damage": 15
+    }
+  },
+  "quests": {
+    "npc_quest_active": false,
+    "npc_quest_completed": false,
+    "miner_quest_active": true,
+    "miner_quest_completed": false
+  },
+  "timestamp": 130443
+}

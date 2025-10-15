@@ -1,0 +1,39 @@
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+T......TTTTTTTTTTTTTTTTTT..TTTTTTTTTTTTT
+T..FFF.T.......T.T.....................T
+T..TTT.TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT   T
+T...T..TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+T..TTL.TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+T..TTL.T.L......L.........L............TT	T
+T..TT..TC..........T.L......C.......L..T
+T..TT..T..........TTT..................T
+T.T....T.....L....T.T.T....L......C....T	T
+T...T.TT.......LL..LL..................T
+T...TTTT.T.L.........FFF.......SSSSS...TT
+T...T.TT....C.......FFF.......S...S....T
+T......T..L.......L.......L........S...T   T
+T..TT..T......T.......L........C.......TT
+T..T..CT....C....L.....LLL...L.........T	T
+T..TTT.T.T.....T......LLL.....L........T   T
+T......T....LLF...F..L..L..............T
+T..T..TT......TTTTTT..T...L........L....TTT
+T..T...T......T....T.......S...........T
+T..T..TTSTS...T....T...L...SS......L.LL.TT
+T..T..TT..S...T....T........S..........T
+T..TTTTTS.....TTTTTT...T..L.......L....T
+T..T...T......LL..LL...........L....C..T   T
+T..TTT.T...L...L........T.L...L........T
+T..TTT.T.T...L....LS.L..TTT.........L..T
+T..T...TC.........L....T.......L.......T
+T..TTTTT...TT..........LL...TT........TT
+T..TTTTT...LLL..LL...L..T...L...C......T
+T...T..T....L..T.....L........L.....L.LT  T
+T....T.TSSS.T..L..L.....FFF...L........T
+T..TTTTT..S...........FFF..........L...TT
+T..T...TS...LT.LT...L.....L...L.....C..T
+T..T.T.T...C......L....T.....L.........T
+T..TTTTT....F..LS...T.T..L.....L...LL..T
+TTT.TT.TTTTT.Rr....T...T...............TT
+T..T..TTTTTT.@.TTTTT.TTT...LLT...C.....T
+TTT.TT.TTTTTTPTTT.TTLL.F...TT..TT......T
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
