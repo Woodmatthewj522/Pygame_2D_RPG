@@ -1,4 +1,4 @@
-# 🗡️ Pygame RPG  
+# 🗡️ My first 2D Pygame RPG  
 *A handcrafted 2D RPG built in Python & Pygame (09/25 – Currently in development)*  
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)
