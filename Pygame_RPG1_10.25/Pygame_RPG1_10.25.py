@@ -2268,6 +2268,7 @@ def load_assets():
     # --- Interiors ---
     try:
         interiors = [
+            pygame.transform.scale(pygame.image.load("Maps/indoor1.png").convert_alpha(), (WIDTH, HEIGHT)),
             pygame.transform.scale(pygame.image.load("Maps/indoor2.png").convert_alpha(), (WIDTH, HEIGHT)),
             pygame.transform.scale(pygame.image.load("Maps/indoor3.png").convert_alpha(), (WIDTH, HEIGHT))
         ]
