@@ -50,15 +50,15 @@ Although some parts need polishing, the game is **fully playable and stable**.
 ```plaintext
 ├── Audio/                     # Sound effects and background music  
 ├── GUI/                       # GUI elements (buttons, menus, HUDs)  
-├── Items/                     # Item data and related scripts  
+├── Items/                     # Item data and related 
 ├── JSON/                      # Configuration and game data (JSON format)  
 ├── Maps/                      # Map layouts, tilesets, and level data  
-├── NPC/                       # NPC behavior scripts and dialogue data
+├── NPC/                       # NPC Sprite Sheets and related
 ├── Pygame_RPG1_10.25/         # Main game directory  
 │   ├── Pygame_RPG1_10.25.py       # Main game script (entry point)  
 │   └── Pygame_RPG1_10.25.pyproj   # IDE project configuration (optional)  
 │
-├── Tiles/                     # Tile images and related map assets
+├── Tiles/                     # Tile images/sheets and related map assets
 │
 ├── .gitattributes             # Git text and diff settings  
 ├── .gitignore                 # Files and folders ignored by Git
