@@ -48,32 +48,23 @@ Although some parts need polishing, the game is **fully playable and stable**.
 ## 📁 Folder Structure
 
 ```plaintext
-├── Audio/               # Music and sound effects
-│   ├── main.mp3
-│   ├── forest.mp3
-│   ├── dungeon_theme.mp3
-│   └── walk.mp3
+├── Audio/                     # Sound effects and background music  
+├── GUI/                       # GUI elements (buttons, menus, HUDs)  
+├── Items/                     # Item data and related scripts  
+├── JSON/                      # Configuration and game data (JSON format)  
+├── Maps/                      # Map layouts, tilesets, and level data  
+├── NPC/                       # NPC behavior scripts and dialogue data
+├── Pygame_RPG1_10.25/         # Main game directory  
+│   ├── Pygame_RPG1_10.25.py       # Main game script (entry point)  
+│   └── Pygame_RPG1_10.25.pyproj   # IDE project configuration (optional)  
 │
-├── Maps/                # Text-based level layouts
-│   ├── world.txt
-│   ├── dungeon1.txt
-│   ├── zone2.txt
-│   └── boss_room.txt
+├── Tiles/                     # Tile images and related map assets
 │
-├── NPC/                 # Player & enemy sprites
-│   ├── Player.PNG
-│   ├── boss1.png
-│   └── ...
-│
-├── JSON/                # Saved game data and configs
-│   ├── save_slot_1.json
-│   ├── save_slot_2.json
-│   └── ...
-│
-├── Assets/              # Optional visual/UI assets
-│
-├── Pygame_RPG1_10.25.py # Main game script
-└── README.md            # This file
+├── .gitattributes             # Git text and diff settings  
+├── .gitignore                 # Files and folders ignored by Git
+├── Pygame_RPG1_10.25.sln      # NEEDS REMOVED (not in use, not the project)
+└── README.md                  # Project documentation  
+
 ```
 # ⚙️ Setup & Requirements
 🐍 Python
