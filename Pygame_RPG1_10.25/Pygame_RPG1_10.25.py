@@ -18,7 +18,7 @@
 # Add more sound effects
 # Add more items/enemies
 # Polish UI
-
+# push to GitHub
 
 ## -*- coding: utf-8 -*-
 import os
