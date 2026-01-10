@@ -5,6 +5,21 @@
 
 # Organized the code the best i could, enjoy reading!
 
+
+# ISSUES TO FIX:
+# Path is weird
+# Adjust player size when indoors
+# Health Pot is "h" and should be on action bar
+# action bar (not in use in code somewhere)
+# Enemy AI can be improved
+# Boss fight can be improved
+# Player Respawn after death 
+# Title screen game name/SAVE/LOAD STATE
+# Add more sound effects
+# Add more items/enemies
+# Polish UI
+
+
 ## -*- coding: utf-8 -*-
 import os
 import random
