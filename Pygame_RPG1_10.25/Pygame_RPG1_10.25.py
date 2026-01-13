@@ -3168,7 +3168,7 @@ def draw_main_menu(screen, assets):
     mouse_pos = pygame.mouse.get_pos()
     
     # Title
-    title_text = assets["large_font"].render("Adventure Game", True, (255, 255, 255))
+    title_text = assets["large_font"].render("Matt Craft", True, (255, 255, 255))
     title_rect = title_text.get_rect(center=(WIDTH // 2, HEIGHT // 4))
     screen.blit(title_text, title_rect)
     
