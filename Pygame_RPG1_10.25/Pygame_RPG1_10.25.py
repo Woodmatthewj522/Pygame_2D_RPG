@@ -8,7 +8,6 @@
 
 # ISSUES TO FIX:
 # Path is weird
-# Adjust player size when indoors
 # Health Pot is "h" and should be on action bar
 # action bar (not in use in code somewhere)
 # Enemy AI can be improved
@@ -19,6 +18,13 @@
 # Add more items/enemies
 # Polish UI
 # push to GitHub
+
+# IN GAME CHANGES:
+# click and drag inventory items, needs icon
+# programmed to hit h and without potions, it still heals over time
+# use different tree for border tree
+
+
 
 ## -*- coding: utf-8 -*-
 import os
@@ -58,7 +64,7 @@ is_attacking = False
 attack_timer = 0
 
 # Player constants
-PLAYER_SIZE_INDOOR = 80
+PLAYER_SIZE_INDOOR = 140
 PLAYER_MAX_HEALTH = 100
 PLAYER_BASE_DAMAGE = 15
 PLAYER_BASE_DEFENSE = 0
@@ -1296,8 +1302,6 @@ def update_camera():
         map_offset_y = player_world_y - margin_y
     elif player_world_y - map_offset_y > HEIGHT - margin_y:
         map_offset_y = player_world_y - (HEIGHT - margin_y)
-    if current_level == "zone2":
-        clamp_camera_to_zone2()
 
 def handle_pause_menu_input(event, assets, dt):
     """Handle input for the pause menu."""
@@ -1862,8 +1866,10 @@ def apply_map_data(map_data):
             boss1_portal = pygame.Rect(x, y, 50, 50)
             tree_rects.append(boss1_portal)
         elif entity['type'] == 'npc':
-            npc_rect = pygame.Rect(x, y, PLAYER_SIZE * 4, PLAYER_SIZE * 4)
+            global npc_rect
+            npc_rect = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
         elif entity['type'] == 'miner':
+            global miner_npc_rect
             miner_npc_rect = pygame.Rect(x, y, PLAYER_SIZE, PLAYER_SIZE)
     
     # Set player spawn position
@@ -5396,19 +5402,6 @@ def execute_save_slot_selection():
     else:
         start_new_game()
         game_state = "playing"
-def clamp_camera_to_zone2():
-    """Prevent camera from going beyond zone2 map boundaries."""
-    global map_offset_x, map_offset_y
-    ZONE2_MAP_WIDTH = 50 * TILE_SIZE  # Example: 50 tiles wide
-    ZONE2_MAP_HEIGHT = 50 * TILE_SIZE  # Example: 50 tiles tall
-    
-    # Clamp horizontal offset
-    max_offset_x = ZONE2_MAP_WIDTH - WIDTH
-    map_offset_x = max(0, min(map_offset_x, max_offset_x))
-    
-    # Clamp vertical offset
-    max_offset_y = ZONE2_MAP_HEIGHT - HEIGHT
-    map_offset_y = max(0, min(map_offset_y, max_offset_y))
 
 def execute_menu_option():
     """Execute the selected menu option."""
@@ -5718,9 +5711,9 @@ def handle_playing_state(screen, assets, dt):
                         player_pos.center = (WIDTH // 2, HEIGHT // 2)
                         setup_indoor_colliders()
 
-                    elif npc_rect and player_world_rect.colliderect(npc_rect.inflate(20, 20)):
+                    elif npc_rect and player_world_rect.colliderect(npc_rect.move(60, 50).inflate(10, 10)):
                         show_npc_dialog = True
-                    elif miner_npc_rect and player_world_rect.colliderect(miner_npc_rect.inflate(20, 20)):
+                    elif miner_npc_rect and player_world_rect.colliderect(miner_npc_rect.inflate(10, 10)):
                         show_miner_dialog = True
 
                     elif equipment_slots["weapon"] and equipment_slots["weapon"].name == "Axe":
