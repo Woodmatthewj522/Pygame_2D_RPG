@@ -3292,42 +3292,51 @@ def draw_dungeon(screen, assets, enemy_frames):
         else:
             text.draw(screen, assets["small_font"], map_offset_x, map_offset_y)
 def draw_zone2(screen, assets):
-    """Draw Zone 2 with its unique features."""
-    # Draw grass base 
+    """Draw Zone 2 with its unique features - OPTIMIZED."""
+    # Cache the tinted grass surface (one-time creation)
+    if not hasattr(assets, '_zone2_grass_cached'):
+        grass_tinted = assets["grass"].copy()
+        grass_tinted.fill((180, 255, 180), special_flags=pygame.BLEND_MULT)
+        assets['_zone2_grass_cached'] = grass_tinted
+    else:
+        grass_tinted = assets['_zone2_grass_cached']
+    
     start_col = map_offset_x // TILE_SIZE
     start_row = map_offset_y // TILE_SIZE
     cols_to_draw = (WIDTH // TILE_SIZE) + 3
     rows_to_draw = (HEIGHT // TILE_SIZE) + 3
     
+    # Now just blit the pre-tinted grass (no copying/blending per frame)
     for row in range(start_row, start_row + rows_to_draw):
         for col in range(start_col, start_col + cols_to_draw):
             x, y = col * TILE_SIZE, row * TILE_SIZE
-            grass_tinted = assets["grass"].copy()
-            grass_tinted.fill((180, 255, 180), special_flags=pygame.BLEND_MULT)
             screen.blit(grass_tinted, (x - map_offset_x, y - map_offset_y))
     
+    # Rest of the function stays the same...
     # Draw water tiles
     for wx, wy in water_tiles:
         water_rect = pygame.Rect(wx - map_offset_x, wy - map_offset_y, TILE_SIZE, TILE_SIZE)
-        pygame.draw.rect(screen, (50, 100, 200), water_rect)  # Blue water
-        # Add some wave effect
+        pygame.draw.rect(screen, (50, 100, 200), water_rect)
         pygame.draw.rect(screen, (100, 150, 255), water_rect, 2)
     
-    # Draw trees (mystical purple tint)
-    for tree in tree_rects:
+    # Draw trees (mystical purple tint) - ALSO OPTIMIZE THIS
+    if not hasattr(assets, '_zone2_tree_cached'):
         tree_image = assets["tree"].copy()
         tree_image.fill((200, 150, 255), special_flags=pygame.BLEND_MULT)
+        assets['_zone2_tree_cached'] = tree_image
+    else:
+        tree_image = assets['_zone2_tree_cached']
+    
+    for tree in tree_rects:
         screen.blit(tree_image, (tree.x - map_offset_x - 2, tree.y - map_offset_y - 2))
     
     # Draw crystals
     for crystal in crystal_rects:
-        # Draw glowing effect
         glow_rect = crystal.inflate(10, 10)
         glow_surf = pygame.Surface((glow_rect.width, glow_rect.height), pygame.SRCALPHA)
         pygame.draw.ellipse(glow_surf, (100, 200, 255, 50), glow_surf.get_rect())
         screen.blit(glow_surf, (glow_rect.x - map_offset_x, glow_rect.y - map_offset_y))
         
-        # Draw crystal
         if "crystal_item" in assets:
             screen.blit(assets["crystal_item"].image, 
                        (crystal.x - map_offset_x, crystal.y - map_offset_y))
@@ -3336,7 +3345,7 @@ def draw_zone2(screen, assets):
     for stone in stone_rects:
         screen.blit(assets["stone_img"], (stone.x - map_offset_x, stone.y - map_offset_y))
     
-    # Draw flowers with magical glow
+    # Draw flowers
     for fx, fy, idx in flower_tiles:
         flower_image = assets["flowers"][idx].copy()
         flower_image.fill((255, 200, 255), special_flags=pygame.BLEND_ADD)
@@ -3348,19 +3357,22 @@ def draw_zone2(screen, assets):
     
     # Draw return portal
     if zone2_return_portal:
-        # Portal with purple tint
-        portal_image = assets["portal"].copy()
-        portal_image.fill((200, 100, 255), special_flags=pygame.BLEND_MULT)
+        if not hasattr(assets, '_zone2_portal_cached'):
+            portal_image = assets["portal"].copy()
+            portal_image.fill((200, 100, 255), special_flags=pygame.BLEND_MULT)
+            assets['_zone2_portal_cached'] = portal_image
+        else:
+            portal_image = assets['_zone2_portal_cached']
+        
         screen.blit(portal_image, 
                    (zone2_return_portal.x - map_offset_x, zone2_return_portal.y - map_offset_y))
     
-    # Draw merchant NPC if exists
+    # Draw merchant NPC
     if zone2_merchant_rect:
         merchant_image = assets.get("miner_image", assets["npc_image"])
         merchant_image = pygame.transform.scale(merchant_image, (PLAYER_SIZE, PLAYER_SIZE))
         screen.blit(merchant_image, 
                    (zone2_merchant_rect.x - map_offset_x, zone2_merchant_rect.y - map_offset_y))
-
 #-----------------------
 # More draw functions
 # -----------------------
@@ -3729,7 +3741,7 @@ def _update_crafting(current_time, assets, dt):
             item_to_craft = None
             crafting_timer = 0
 
-def _update_animations(dt, player_frames, attack_frames, chopping_frames, attack_animation_duration, assets):
+def _update_animations(dt, player_frames, attack_frames, chopping_frames, attack_animation_duration, assets, dx=0, dy=0):
     """Update player animations."""
     global is_attacking, attack_timer, player_frame_timer, player_frame_index, current_direction
     global is_chopping, chopping_timer, chopping_target_tree, is_swinging
@@ -3768,8 +3780,7 @@ def _update_animations(dt, player_frames, attack_frames, chopping_frames, attack
                 player_frame_index = (player_frame_index + 1) % max_frames
                 player_frame_timer = 0
 
-                # 🔊 Play sound only on the "impact" frame
-                if chop_sound and player_frame_index == 1:  # adjust frame index as needed
+                if chop_sound and player_frame_index == 1:
                     try:
                         chop_sound.play()
                     except Exception as e:
@@ -3794,7 +3805,6 @@ def _update_animations(dt, player_frames, attack_frames, chopping_frames, attack
                 player_frame_index = (player_frame_index + 1) % max_frames
                 player_frame_timer = 0
 
-                # 🔊 Play sound only once per mining action
                 if mine_sound and not mine_sound_played:
                     try:
                         mine_sound.play()
@@ -3805,15 +3815,18 @@ def _update_animations(dt, player_frames, attack_frames, chopping_frames, attack
         if mining_timer >= MINING_DURATION:
             _complete_mining(current_time, assets)
             mine_sound.stop()
-            mine_sound_played = False   # reset for the next mining action
+            mine_sound_played = False
 
-    # Normal animation state update
+    # Normal animation state update (MOVED OUT OF elif is_mining BLOCK)
     else:
         player_frame_timer += dt
-        if current_direction == "idle":
+        # Only animate if actually moving (dx != 0 or dy != 0)
+        # Otherwise show idle frame (first frame of last_direction)
+        if dx == 0 and dy == 0:
+            # Stopped moving - show first frame (idle pose) of last direction
             player_frame_index = 0
         elif player_frame_timer > player_frame_delay:
-            frame_set = player_frames.get(current_direction, player_frames["idle"])
+            frame_set = player_frames.get(last_direction, player_frames["idle"])
             max_frames = len(frame_set)
             player_frame_index = (player_frame_index + 1) % max_frames
             player_frame_timer = 0
@@ -4022,7 +4035,7 @@ def draw_world(screen, assets):
     start_col = map_offset_x // TILE_SIZE
     start_row = map_offset_y // TILE_SIZE
     cols_to_draw = (WIDTH // TILE_SIZE) + 3
-    rows_to_draw = (HEIGHT // TILE_SIZE) + 3
+    rows_to_draw = (HEIGHT // TILE_SIZE) + 3 
     tree_size_diff = 5
 
     # Draw grass
@@ -5254,10 +5267,8 @@ def handle_movement(keys):
         dy += speed
         new_direction = "down"
 
-
     # Update directions and track movement
     if new_direction:
-
         current_direction = new_direction
         last_direction = new_direction
 
@@ -5269,11 +5280,10 @@ def handle_movement(keys):
             (direction, timestamp) for direction, timestamp in player_movement_history
             if current_time - timestamp < 500
         ]
-    else:
-        current_direction = "idle"
+    # REMOVE THIS ELSE BLOCK - don't set current_direction to idle
+    # Just keep facing the last direction
 
     return dx, dy
-
 
 def handle_collision(new_world_rect):
     """Checks for collision with world objects depending on current level."""
@@ -5286,13 +5296,12 @@ def handle_collision(new_world_rect):
             return True
         return False
     elif current_level == "boss_room":
-        # Allow free movement except for walls loaded from map
         if any(new_world_rect.colliderect(r) for r in boss_room_walls):
             return True
         return False
     elif current_level == "zone2":
-        # Check collision with trees and water
-        if any(new_world_rect.colliderect(r) for r in tree_rects + crystal_rects):
+        # ✅ ADD stone_rects HERE ✅
+        if any(new_world_rect.colliderect(r) for r in tree_rects + stone_rects + crystal_rects):
             return True
         # Check water collision (blocks movement)
         for wx, wy in water_tiles:
@@ -5302,7 +5311,6 @@ def handle_collision(new_world_rect):
         return False
     else:  # house
         return any(new_world_rect.colliderect(r) for r in indoor_colliders)
-
 
 def check_house_entry(world_rect):
     """Checks if the player is near a house door in the world."""
@@ -5899,18 +5907,20 @@ def handle_playing_state(screen, assets, dt):
             elif event.button == 3:
                 handle_equipment_click(event.pos)
 
-    # -------------------------
-    # Per-frame state updates (animations, movement)
+# Per-frame state updates (animations, movement)
     # -------------------------
     _update_npc_animations(dt)
     _update_crafting(current_time, assets, dt)
-    _update_animations(dt, player_frames, attack_frames, chopping_frames, attack_animation_duration, assets)
 
     # Player movement (blocked by UI)
     if not _is_ui_blocking_movement():
         keys = pygame.key.get_pressed()
         dx, dy = handle_movement(keys)
         _handle_player_movement(dx, dy)
+    else:
+        dx, dy = 0, 0
+
+    _update_animations(dt, player_frames, attack_frames, chopping_frames, attack_animation_duration, assets, dx, dy)
 
     # -------------------------
     # Drawing (world, player, UI)
